@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppData.Controller">
+    <VBox>
+        <children>
+            <TabPane prefHeight="240.0" prefWidth="425.0" tabClosingPolicy="UNAVAILABLE">
+                <tabs>
+                    <Tab text="UPC Labels">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <children>
+                                    <TextField fx:id="UPCInput" layoutX="14.0" layoutY="24.0" prefHeight="50.0" prefWidth="393.0" promptText="UPC Code" />
+                                    <Button fx:id="UPCPrint" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#printUPC" prefHeight="40.0" prefWidth="397.0" text="Print UPC" textAlignment="CENTER">
+                                        <font>
+                                            <Font name="System Bold" size="18.0" />
+                                        </font>
+                                    </Button>
+                                    <Text fx:id="CountErrorUPC" fill="RED" layoutX="122.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Entry" visible="false" />
+                                    <TextField fx:id="UPCCount" layoutX="14.0" layoutY="120.0" prefHeight="25.0" prefWidth="100.0" promptText="Count (1)" />
+                                    <CheckBox fx:id="DoubleSided" layoutX="309.0" layoutY="97.0" mnemonicParsing="false" text="Double Sided" onAction="#doublesideClick"/>
+                                    <CheckBox fx:id="TCLabel" layoutX="309.0" layoutY="124.0" mnemonicParsing="false" text="Tote/Cart Label" onAction="#tcClick"/>
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab onSelectionChanged="#OpenLPK" text="LPK Labels">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="227.0" prefWidth="434.0">
+                                <children>
+                                    <Button fx:id="LPKPrint" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#printLPK" prefHeight="40.0" prefWidth="397.0" text="Print LPK" textAlignment="CENTER">
+                                        <font>
+                                            <Font name="System Bold" size="18.0" />
+                                        </font>
+                                    </Button>
+                                    <TextField fx:id="LPKInput" layoutX="36.0" layoutY="81.0" prefHeight="25.0" prefWidth="141.0" promptText="Start" />
+                                    <TextField fx:id="LPKCount" layoutX="14.0" layoutY="120.0" prefHeight="25.0" prefWidth="100.0" promptText="Count (1)" />
+                                    <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last LPK Printed" />
+                                    <Button fx:id="NextBatch" layoutX="301.0" layoutY="81.0" mnemonicParsing="false" onAction="#nextBatch" prefHeight="25.0" prefWidth="110.0" text="Set Next Batch" />
+                                    <Text fx:id="LastLPK" layoutX="14.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Load Batch" />
+                                    <Button fx:id="LoadBatch" layoutX="301.0" layoutY="42.0" mnemonicParsing="false" onAction="#loadBatch" prefHeight="25.0" prefWidth="110.0" text="Load Last Batch" />
+                                    <Text fx:id="BlankErrorLPK" fill="RED" layoutX="185.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter a valid LPK" visible="false" />
+                                    <Text fx:id="CountErrorLPK" fill="RED" layoutX="122.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Must Be Number" visible="false" />
+                                    <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LPK" />
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab text="Custom Labels">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <children>
+                                    <Button fx:id="CustomPrint" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#customPrint" prefHeight="40.0" prefWidth="397.0" text="Print Custom" textAlignment="CENTER">
+                                        <font>
+                                            <Font name="System Bold" size="18.0" />
+                                        </font>
+                                    </Button>
+                                    <TextField fx:id="CustomInput" layoutX="14.0" layoutY="33.0" prefHeight="57.0" prefWidth="240.0" promptText="Custom Labels" />
+                                    <Text fx:id="CountErrorCustom" fill="RED" layoutX="122.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Must Be Number" visible="false" />
+                                    <TextField fx:id="CustomCount" layoutX="14.0" layoutY="120.0" prefHeight="25.0" prefWidth="100.0" promptText="Count (1)" />
+                                    <MenuButton fx:id="CustomSize" layoutX="350.0" layoutY="120.0" mnemonicParsing="false" text="4X6">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" onAction="#CustomSizeLG" text=" 4X6   " fx:id="customSizeLG" />
+                                            <MenuItem mnemonicParsing="false" onAction="#CustomSizeSM" text=" 4X1   " fx:id="customSizeSM"/>
+                                        </items>
+                                    </MenuButton>
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                    <Tab text="CSV Import">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                <children>
+                                    <MenuButton fx:id="CSVSize" layoutX="350.0" layoutY="120.0" mnemonicParsing="false" text="4X1">
+                                        <items>
+                                            <MenuItem mnemonicParsing="false" onAction="#CSVSizeLG" text="4X6" />
+                                            <MenuItem mnemonicParsing="false" onAction="#CSVSizeSM" text="4X1" />
+                                        </items>
+                                    </MenuButton>
+                                    <Button fx:id="CSVPrint" layoutX="14.0" layoutY="157.0" mnemonicParsing="false" onAction="#printCSV" prefHeight="40.0" prefWidth="397.0" text="Print CSV" textAlignment="CENTER">
+                                        <font>
+                                            <Font name="System Bold" size="18.0" />
+                                        </font>
+                                    </Button>
+                                    <Button fx:id="CSVImport" layoutX="14.0" layoutY="117.0" mnemonicParsing="false" onAction="#importCSV" prefHeight="32.0" prefWidth="319.0" text="Import CSV" textAlignment="CENTER" />
+                                    <Button fx:id="CSVDownload" layoutX="272.0" layoutY="14.0" mnemonicParsing="false" onAction="#downloadCSV" prefHeight="32.0" prefWidth="139.0" text="Download Template" textAlignment="CENTER" />
+                                    <Text fx:id="CSVReady" fill="RED" layoutX="42.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not Ready">
+                                        <font>
+                                            <Font size="40.0" />
+                                        </font>
+                                    </Text>
+                                    <Button layoutX="272.0" layoutY="65.0" mnemonicParsing="false" onAction="#clearCSV" prefHeight="32.0" prefWidth="139.0" text="Clear CSV" textAlignment="CENTER" />
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </children>
+    </VBox>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

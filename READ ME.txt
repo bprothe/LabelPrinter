@@ -1,0 +1,44 @@
+-----------------------------------------------
+This Barcode Labeling Software has been written and designed by Brandon Prothe.
+-----------------------------------------------
+The intention of this program is to make it easier for people to print barcodes onto Zebra Label Printers.
+This is free to use and not to be sold. This program has four primary functions.
+To create LPK labels (4X6) to store pallets.
+To create UPC labels (4X1) to put on merchandise.
+To create custom labels (4X6 & 4X1) for use in whatever needed.
+To create a list of labels/barcodes imported from a CSV.
+-----------------------------------------------
+------------GENERAL----------------------------
+
+This program must be installed in a directory the current user has read/write/delete privlages for.
+The installer will put root files in %userprofile%\appdata\local\labelprinter.
+The config file in the app folder is only used for the LPK functionality.
+On startup, this program will request the user to choose a printer. 
+If a different printer is needed, the program must be closed and reopened.
+The .pj file is the print job file. This is actually just a .png in disguise.
+For 4X1 Labels(excluding UPC), the max character length is 30.
+For 4X6 Labels(excluding LPK), the max character length is 25
+
+------------UPC--------------------------------
+UPC Print is used for printing Barcodes for products.
+Desgined to print a small Barcode in a 4X1 format with UPC labeling underneath.
+Double Sided functionality can print 2 barcodes on 1 label.
+
+------------LPK Print--------------------------
+LPK numbers are stored locally so this functionality only works with 1 computer/profile to print all LPKs.
+The config file in the app folder is only used for the LPK functionality.
+The most recent LPK printed will override what is on the config file.
+If what is stored in the config file is wrong, either change it in the %userprofile%\appdata\local\labelprinter\app folder,
+or you can send a print job with the correct number to also overwrite it.
+
+------------Custom Print-----------------------
+Custom Print is used to print specific barcodes with a certain amount.
+This supports plain text and numbers. 
+Custom print has a character limit of 12.
+
+------------Import CSV-------------------------
+Import CSV Print is used to print barcodes from a CSV format.
+CSV download will put a PrintTemplate.csv on the current user's Downloads folder.
+This is the format to use when importing CSV's.
+Prefix, Label, and Suffix collumns are treated the same by the program and are combined as is.
+
